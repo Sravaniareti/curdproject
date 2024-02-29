@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    {% include 'cdnlines.html'%}
+    <title>curdapp</title>
+  </head>
+  <body>
+    <div class="text-center">
+      <h1 class="bg-success text-white">Welcome to NTH</h1>
+
+    </div>
+    <div class="text-right mr-2">
+      <a href="{% url 'studentdata' %}" class="btn btn-success btn-lg mb-1">Add New Student</a>
+    </div>
+    <div class="text-center">
+    {% if data %}
+    <table class="table table-bordered table-hover">
+      <thead>
+        <tr>
+          <th>First Name</th>
+              <th>Last Name</th>
+              <th>Contact</th>
+              <th>Email</th>
+              <th>Date</th>
+              <th>operations</th>
+        </tr>
+      </thead>
+      <tbody>
+
+
+        {% for i in data %}
+<tr>
+              <td>{{i.first_name}}</td>
+              <td>{{i.last_name}}</td>
+              <td>{{i.contact}}</td>
+              <td>{{i.email}}</td>
+              <td>{{i.date}}</td>
+              <td>
+                <a href="{% url 'update_studentdata' i.id %}" class="btn btn-sm btn-success">update</a>
+                <a href="{% url 'delete_studentdata' i.id %}" class="btn btn-sm btn-danger">delete</a></td>
+
+  </tr>
+        {% endfor %}
+
+
+
+      </tbody>
+    </table>
+
+
+    {% else %}
+    <h1>no data</h1>
+
+    {% endif %}
+
+    </div>
+
+  </body>
+</html>
